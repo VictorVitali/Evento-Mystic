@@ -1,0 +1,1085 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invasão de Surtur | Mystic Destiny</title>
+  <meta name="description" content="Guia interativo do evento Invasão de Surtur no Mystic Destiny, com calendário, horários, caixas, crafts, bosses e bonificações.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232c2440'/%3E%3Cpath d='M14 48V16h9l9 15 9-15h9v32h-8V29L34 43h-4l-8-14v19z' fill='%23a855f7'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: oklch(11% 0.035 285);
+      --bg-soft: oklch(16% 0.045 285);
+      --panel: oklch(20% 0.055 285);
+      --panel-strong: oklch(24% 0.075 285);
+      --text: oklch(96% 0.012 72);
+      --muted: oklch(76% 0.035 285);
+      --quiet: oklch(62% 0.04 285);
+      --violet: oklch(64% 0.23 304);
+      --fire: oklch(72% 0.22 48);
+      --ember: oklch(62% 0.24 28);
+      --lime: oklch(82% 0.21 132);
+      --cyan: oklch(82% 0.15 205);
+      --danger: oklch(63% 0.24 24);
+      --line: oklch(100% 0.01 285 / 0.12);
+      --shadow: 0 24px 80px oklch(5% 0.03 285 / 0.55);
+      --brand-mono: oklch(64% 0.23 304);
+      --brand-mono-bg: oklch(24% 0.075 285);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1180px;
+      font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding-top: 96px;
+      background:
+        radial-gradient(circle at 12% 8%, oklch(58% 0.24 304 / 0.28), transparent 30rem),
+        radial-gradient(circle at 88% 4%, oklch(68% 0.22 48 / 0.26), transparent 28rem),
+        linear-gradient(135deg, oklch(9% 0.045 285), var(--bg) 52%, oklch(13% 0.06 28));
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(oklch(100% 0.01 285 / 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, oklch(100% 0.01 285 / 0.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, oklch(100% 0 0), transparent 70%);
+    }
+
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      z-index: 100;
+      padding: .75rem 1rem;
+      border-radius: 999px;
+      background: var(--lime);
+      color: oklch(14% 0.05 285);
+      font-weight: 900;
+      transition: top .2s ease;
+    }
+
+    .skip-link:focus { top: 1rem; }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      height: 80px;
+      border-bottom: 1px solid oklch(100% 0.01 285 / 0.05);
+      background: oklch(7% 0.005 285 / 0.8);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 10px 15px -3px oklch(0% 0 0 / 0.5), 0 4px 6px -4px oklch(0% 0 0 / 0.5);
+    }
+
+    .topbar-inner {
+      width: min(1600px, 100% - 3rem);
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: oklch(98% 0.006 285);
+    }
+
+    .brand-title {
+      color: oklch(98% 0.006 285);
+      font-size: 1.25rem;
+      font-weight: 950;
+      letter-spacing: -.05em;
+      text-transform: uppercase;
+    }
+
+    .quick-nav {
+      position: sticky;
+      top: 96px;
+      z-index: 19;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+      padding-top: .7rem;
+      padding-bottom: .35rem;
+    }
+
+    .quick-nav-label {
+      flex: 0 0 auto;
+      padding: .44rem .65rem;
+      border: 1px solid oklch(82% 0.21 132 / 0.32);
+      border-radius: 999px;
+      background: oklch(82% 0.21 132 / 0.1);
+      color: var(--lime);
+      font-size: .72rem;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      border: 1px solid oklch(74% 0.16 304 / 0.2);
+      background: linear-gradient(135deg, var(--violet), oklch(46% 0.22 304));
+      color: oklch(98% 0.006 285);
+      font-size: 1.125rem;
+      font-weight: 950;
+      box-shadow: 0 0 20px oklch(64% 0.23 304 / 0.3);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .brand:hover .brand-mark,
+    .brand:focus-visible .brand-mark {
+      box-shadow: 0 0 25px oklch(64% 0.23 304 / 0.6);
+      transform: rotate(3deg);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      max-width: min(78vw, 760px);
+      padding: .2rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: oklch(16% 0.045 285 / 0.96);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 14px 34px oklch(0% 0 0 / 0.35);
+    }
+
+    .nav a {
+      flex: 0 0 auto;
+      padding: .62rem .82rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible,
+    .nav a.is-active {
+      border-color: oklch(72% 0.22 48 / 0.4);
+      background: oklch(72% 0.22 48 / 0.13);
+      color: var(--text);
+      outline: none;
+    }
+
+    main { position: relative; z-index: 1; }
+
+    .hero,
+    .section {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: clamp(2.5rem, 7vw, 6rem) 0 clamp(2rem, 5vw, 4rem);
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+      gap: clamp(1.5rem, 4vw, 4rem);
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: .55rem;
+      margin: 0 0 1rem;
+      padding: .45rem .7rem;
+      border: 1px solid oklch(82% 0.21 132 / 0.35);
+      border-radius: 999px;
+      background: oklch(82% 0.21 132 / 0.1);
+      color: var(--lime);
+      font-size: .78rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .pulse-dot {
+      width: .55rem;
+      height: .55rem;
+      border-radius: 999px;
+      background: var(--lime);
+      box-shadow: 0 0 0 .35rem oklch(82% 0.21 132 / 0.16);
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1 {
+      max-width: 10ch;
+      margin-bottom: 1rem;
+      font-size: clamp(3.3rem, 10vw, 8.8rem);
+      line-height: .86;
+      letter-spacing: -.085em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy {
+      max-width: 64ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.22rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
+      margin-top: 1.5rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: .75rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-size: .83rem;
+    }
+
+    .button.primary {
+      border-color: oklch(72% 0.22 48 / 0.65);
+      background: linear-gradient(135deg, var(--fire), var(--ember));
+      color: oklch(14% 0.055 42);
+      box-shadow: 0 16px 42px oklch(62% 0.24 28 / 0.28);
+    }
+
+    .hero-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, oklch(24% 0.08 285 / 0.92), oklch(15% 0.06 28 / 0.95)),
+        var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .countdown-card {
+      padding: clamp(1.15rem, 3vw, 1.65rem);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, oklch(72% 0.22 48 / 0.16), transparent);
+    }
+
+    .countdown-card .label,
+    .label {
+      color: var(--quiet);
+      font-size: .75rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    .date-range {
+      display: flex;
+      gap: 1rem;
+      margin-top: .85rem;
+    }
+
+    .date-chip {
+      flex: 1;
+      padding: .85rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: oklch(100% 0.01 285 / 0.055);
+    }
+
+    .date-chip strong {
+      display: block;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .quick-list {
+      display: grid;
+      gap: .75rem;
+      padding: clamp(1.15rem, 3vw, 1.65rem);
+    }
+
+    .quick-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .8rem;
+      align-items: start;
+      padding: .85rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: oklch(100% 0.01 285 / 0.04);
+    }
+
+    .quick-item strong { display: block; }
+    .quick-item span { color: var(--muted); font-size: .94rem; }
+
+    .icon-badge {
+      width: 2.25rem;
+      height: 2.25rem;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: oklch(72% 0.22 48 / 0.16);
+      color: var(--fire);
+      font-weight: 950;
+    }
+
+    .section { padding: clamp(2.4rem, 6vw, 5rem) 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1.5rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .section h2 {
+      margin-bottom: .25rem;
+      font-size: clamp(2rem, 5vw, 4.25rem);
+      line-height: .92;
+      letter-spacing: -.065em;
+      text-transform: uppercase;
+    }
+
+    .section-lead {
+      max-width: 66ch;
+      color: var(--muted);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .info-tile,
+    .panel,
+    .schedule-day,
+    .craft-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, oklch(100% 0.01 285 / 0.075), oklch(100% 0.01 285 / 0.035));
+      box-shadow: 0 18px 44px oklch(5% 0.03 285 / 0.28);
+    }
+
+    .info-tile {
+      padding: 1rem;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .info-tile.hot {
+      background: linear-gradient(145deg, oklch(72% 0.22 48 / 0.22), oklch(100% 0.01 285 / 0.04));
+    }
+
+    .info-tile h3 {
+      margin-bottom: .5rem;
+      font-size: 1.2rem;
+      line-height: 1.1;
+    }
+
+    .info-tile p,
+    .craft-card p { color: var(--muted); margin-bottom: 0; }
+
+    .stat {
+      margin-top: 1.2rem;
+      color: var(--fire);
+      font-size: 1.8rem;
+      font-weight: 950;
+      letter-spacing: -.05em;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(130px, 1fr));
+      gap: .75rem;
+      overflow-x: auto;
+      padding-bottom: .5rem;
+    }
+
+    .schedule-day {
+      min-width: 130px;
+      padding: 1rem;
+    }
+
+    .schedule-day strong {
+      display: block;
+      color: var(--fire);
+      font-size: 1.45rem;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .schedule-day span {
+      display: block;
+      margin-top: .55rem;
+      color: var(--text);
+      font-weight: 850;
+    }
+
+    .odin {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid oklch(82% 0.21 132 / 0.38);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, oklch(82% 0.21 132 / 0.14), oklch(64% 0.23 304 / 0.12));
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin: 0 0 1rem;
+    }
+
+    .tab-button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .7rem .9rem;
+      background: oklch(100% 0.01 285 / 0.055);
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+      font-size: .82rem;
+    }
+
+    .tab-button:hover,
+    .tab-button:focus-visible,
+    .tab-button[aria-selected="true"] {
+      border-color: oklch(72% 0.22 48 / 0.65);
+      background: oklch(72% 0.22 48 / 0.18);
+      color: var(--text);
+      outline: none;
+    }
+
+    .tab-panel[hidden] { display: none; }
+
+    .panel { padding: clamp(1rem, 3vw, 1.4rem); }
+
+    .loot-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .45rem .65rem;
+      border-radius: 999px;
+      background: oklch(64% 0.23 304 / 0.14);
+      color: var(--text);
+      font-size: .83rem;
+      font-weight: 850;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+    }
+
+    th,
+    td {
+      padding: .82rem .75rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--quiet);
+      font-size: .75rem;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: oklch(100% 0.01 285 / 0.055);
+    }
+
+    td:first-child {
+      width: 105px;
+      color: var(--fire);
+      font-weight: 950;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .craft-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .craft-card { padding: 1rem; }
+
+    .craft-card h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      margin-bottom: .75rem;
+      line-height: 1.15;
+    }
+
+    .recipe {
+      display: grid;
+      gap: .6rem;
+      margin-top: .85rem;
+    }
+
+    .recipe div {
+      padding: .75rem;
+      border-radius: var(--radius-md);
+      background: oklch(100% 0.01 285 / 0.05);
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .event-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: .65rem;
+    }
+
+    .event-list li {
+      padding: .78rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: oklch(100% 0.01 285 / 0.045);
+    }
+
+    .footer {
+      margin-top: 4rem;
+      padding: 2rem 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--quiet);
+      text-align: center;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 920px) {
+      .topbar-inner { width: min(100% - 1.5rem, 1600px); }
+      .quick-nav { align-items: start; flex-direction: column; width: min(100% - 1rem, var(--max)); gap: .45rem; }
+      .nav { max-width: 100%; width: 100%; }
+      .hero { grid-template-columns: 1fr; }
+      .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .section-head { align-items: start; flex-direction: column; }
+      .craft-grid,
+      .two-column { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .hero,
+      .section,
+      .topbar-inner { width: min(100% - 1rem, 1600px); }
+      .brand-title { display: none; }
+      h1 { font-size: clamp(2.75rem, 18vw, 4.2rem); }
+      .date-range,
+      .dashboard-grid { grid-template-columns: 1fr; display: grid; }
+      .info-tile { min-height: auto; }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td { display: block; }
+
+      thead { display: none; }
+
+      tr {
+        padding: .75rem;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        margin-bottom: .65rem;
+        background: oklch(100% 0.01 285 / 0.04);
+      }
+
+      td {
+        display: grid;
+        grid-template-columns: 7rem 1fr;
+        gap: .75rem;
+        width: auto !important;
+        padding: .45rem 0;
+        border-bottom: 0;
+      }
+
+      td::before {
+        content: attr(data-label);
+        color: var(--quiet);
+        font-size: .74rem;
+        font-weight: 950;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand group" href="#topo" aria-label="Mystic Destiny">
+        <span class="brand-mark">M</span>
+        <span class="brand-title">Mystic Destiny</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="quick-nav" aria-label="Navegação do evento">
+    <nav class="nav" aria-label="Seções do evento">
+      <a href="#topo">Início</a>
+      <a href="#resumo">Resumo</a>
+      <a href="#calendario">Calendário</a>
+      <a href="#caixas">Caixas</a>
+      <a href="#crafts">Crafts</a>
+      <a href="#teleporte">Teleporte</a>
+      <a href="#donate">Donate</a>
+    </nav>
+  </div>
+
+  <main id="conteudo">
+    <section class="hero" id="topo" aria-labelledby="titulo-evento">
+      <div>
+        <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> Evento ativo de 18/05 a 24/05</p>
+        <h1 id="titulo-evento">Invasão de Surtur</h1>
+        <p class="hero-copy">Um guia rápido para saber o que fazer em cada dia, quais horários não perder, como evoluir pelas caixas e onde trocar seus itens no NPC Infernal.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#caixas">Ver caixas e chances</a>
+          <a class="button" href="#teleporte">Ver horários críticos</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="Resumo rápido do evento">
+        <div class="countdown-card">
+          <div class="label">Período do evento</div>
+          <div class="date-range">
+            <div class="date-chip"><span>Início</span><strong>18/05</strong></div>
+            <div class="date-chip"><span>Término</span><strong>24/05</strong></div>
+          </div>
+        </div>
+        <div class="quick-list">
+          <div class="quick-item">
+            <span class="icon-badge">1</span>
+            <span><strong>Ative sua conta principal</strong> Use <code>/contaprincipal</code> para participar do drop global.</span>
+          </div>
+          <div class="quick-item">
+            <span class="icon-badge">2</span>
+            <span><strong>Drop global</strong> Caixa de Surtur I de 18/05 a 24/05, limitado a uma conta por MAC.</span>
+          </div>
+          <div class="quick-item">
+            <span class="icon-badge">3</span>
+            <span><strong>Boss fixo</strong> 12:30 e 19:30 em Campo de Armia, X 2189 Y 2110.</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="resumo" aria-labelledby="resumo-titulo">
+
+
+      <div class="dashboard-grid">
+        <article class="info-tile hot">
+          <div>
+            <p class="label">Drop global</p>
+            <h3>Caixa de Surtur I</h3>
+            <p>Disponível durante todo o evento. Necessário usar <code>/contaprincipal</code>.</p>
+          </div>
+          <div class="stat">18 a 24</div>
+        </article>
+        <article class="info-tile">
+          <div>
+            <p class="label">Lojinha</p>
+            <h3>Loja aberta em Armia</h3>
+            <p>Ao abrir lojas em Armia, a cada 60 minutos recebe uma Caixa de Surtur 1.</p>
+          </div>
+          <div class="stat">60 min</div>
+        </article>
+        <article class="info-tile">
+          <div>
+            <p class="label">Bosses</p>
+            <h3>2 spawns por dia</h3>
+            <p>Entrega Caixa de Surtur 3. Local: Campo de Armia, X 2189 Y 2110.</p>
+          </div>
+          <div class="stat">12:30<br>19:30</div>
+        </article>
+        <article class="info-tile">
+          <div>
+            <p class="label">Teleporte</p>
+            <h3>Janelas limitadas</h3>
+            <p>Sexta, sábado e domingo com horários específicos. Veja a seção de teleporte.</p>
+          </div>
+          <div class="stat">22 a 24</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="calendario" aria-labelledby="calendario-titulo">
+      <div class="section-head">
+        <div>
+          <p class="label">Calendário de bônus</p>
+          <h2 id="calendario-titulo">Todo dia um novo evento</h2>
+        </div>
+        <p class="section-lead">Use a linha do tempo para planejar quando farmar, minerar, pescar ou tentar o refino protegido.</p>
+      </div>
+
+      <div class="timeline" aria-label="Bônus por dia do evento">
+        <article class="schedule-day"><strong>Dia 1</strong><span>Double Pescaria</span></article>
+        <article class="schedule-day"><strong>Dia 2</strong><span>Double Mineração</span></article>
+        <article class="schedule-day"><strong>Dia 3</strong><span>Double Perga N</span></article>
+        <article class="schedule-day"><strong>Dia 4</strong><span>Double Perga M</span></article>
+        <article class="schedule-day"><strong>Dia 5</strong><span>Double Medalhas LAN</span></article>
+        <article class="schedule-day"><strong>Dia 6</strong><span>Benção de Odin</span></article>
+        <article class="schedule-day"><strong>Dia 7</strong><span>Double EXP</span></article>
+      </div>
+
+      <div class="odin">
+        <p class="label">Benção de Odin</p>
+        <h3>23/05, das 21:45 às 22:00</h3>
+        <p>Durante esses 15 minutos, itens não serão quebrados ao tentar refinar do +6 para o +7.</p>
+      </div>
+    </section>
+
+    <section class="section" id="caixas" aria-labelledby="caixas-titulo">
+      <div class="section-head">
+        <div>
+          <h2 id="caixas-titulo">Caixas e chances</h2>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Caixas da invasão">
+        <button class="tab-button" role="tab" aria-selected="true" aria-controls="box-1" id="tab-box-1" data-tab="box-1">Caixa da Invasão 1</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="box-2" id="tab-box-2" data-tab="box-2">Caixa da Invasão 2</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="box-3" id="tab-box-3" data-tab="box-3">Caixa da Invasão 3</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="box-4" id="tab-box-4" data-tab="box-4">Caixa da Invasão 4</button>
+      </div>
+
+      <div class="panel tab-panel" id="box-1" role="tabpanel" aria-labelledby="tab-box-1"></div>
+      <div class="panel tab-panel" id="box-2" role="tabpanel" aria-labelledby="tab-box-2" hidden></div>
+      <div class="panel tab-panel" id="box-3" role="tabpanel" aria-labelledby="tab-box-3" hidden></div>
+      <div class="panel tab-panel" id="box-4" role="tabpanel" aria-labelledby="tab-box-4" hidden></div>
+    </section>
+
+    <section class="section" id="crafts" aria-labelledby="crafts-titulo">
+      <div class="section-head">
+        <div>
+          <p class="label">NPC Infernal</p>
+          <h2 id="crafts-titulo">Crafts em Armia</h2>
+        </div>
+        <p class="section-lead">Local do NPC: Armia, X 2139 Y 2100.</p>
+      </div>
+
+      <div class="craft-grid">
+        <article class="craft-card">
+          <h3>Craft 1 <span class="tag">Arma Superior</span></h3>
+          <div class="recipe">
+            <div><strong>Entregue:</strong> [01] Caixa de Invasão 4 + 10KK</div>
+            <div><strong>Receba:</strong> [01] Caixa de Armas Superior</div>
+          </div>
+        </article>
+        <article class="craft-card">
+          <h3>Craft 2 <span class="tag">Extração</span></h3>
+          <div class="recipe">
+            <div><strong>Entregue:</strong> [01] Caixa de Invasão 4 + 20KK</div>
+            <div><strong>Receba:</strong> [01] Extração de Luvas 30/18 Imunidade</div>
+          </div>
+        </article>
+        <article class="craft-card">
+          <h3>Craft 3 <span class="tag">Amuleto</span></h3>
+          <div class="recipe">
+            <div><strong>Entregue:</strong> [02] Caixas da Invasão 4 + 20KK, [10] Pó Mineral, [05] Fragmento de Alma</div>
+            <div><strong>Receba:</strong> [01] Caixa de Amuleto Místico Aleatório</div>
+          </div>
+          <p>Possíveis amuletos: 12 1L, 10 1L, 12 2L, 10 2L, 12 3L, 10 3L, 40 AA, 35 AA, 40 1L, 35 1L, 40 2L, 35 2L, 40 3L, 35 3L, 100 HP 1L, 100 MP 1L.</p>
+        </article>
+        <article class="craft-card">
+          <h3>Craft 4 <span class="tag">Planetas</span></h3>
+          <div class="recipe">
+            <div><strong>Entregue:</strong> [03] Caixas de Invasão 4, [10] Fragmentos de Alma, [01] Barra de Donate (100) + 50KK, [30] Pó Mineral</div>
+            <div><strong>Receba:</strong> [01] Caixa de Planetas Aleatório</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="teleporte" aria-labelledby="teleporte-titulo">
+      <div class="section-head">
+        <div>
+          <p class="label">Horários críticos</p>
+          <h2 id="teleporte-titulo">Teleporte e bosses</h2>
+        </div>
+        <p class="section-lead">Esteja atento para não perder os horarios.</p>
+      </div>
+
+      <div class="two-column">
+        <article class="panel">
+          <h3>Evento de Teleporte</h3>
+          <ul class="event-list">
+            <li><strong>Sexta 22/05:</strong> 18:20 às 18:50</li>
+            <li><strong>Sábado 23/05:</strong> 10:00 às 10:30 e 16:00 às 16:30</li>
+            <li><strong>Domingo 24/05:</strong> 10:00 às 10:30 e 16:00 às 16:30</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Bosses Especiais</h3>
+          <ul class="event-list">
+            <li><strong>Quantidade:</strong> Boss fixo, 2 por dia</li>
+            <li><strong>Recompensa:</strong> Caixa de Surtur 3</li>
+            <li><strong>Horários:</strong> 12:30 e 19:30</li>
+            <li><strong>Local:</strong> Campo de Armia, X 2189 Y 2110</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="panel" style="margin-top: 1rem;">
+        <h3>NPCs do Teleporte</h3>
+        <table>
+          <thead><tr><th>NPC</th><th>Entregue</th><th>Receba aleatoriamente</th></tr></thead>
+          <tbody>
+            <tr><td data-label="NPC">NPC I</td><td data-label="Entregue">[01] Adaga equipada</td><td data-label="Receba">Item random + teleporte para o próximo NPC, ou nada + teleporte aleatório na cidade</td></tr>
+            <tr><td data-label="NPC">NPC II</td><td data-label="Entregue">[01] Adaga +1 equipada</td><td data-label="Receba">Restos de Ori, Restos de Lac, Classe D, Classe E, Pergaminho Água N, Moeda de 1KK, tickets de mineração/pescaria ou teleporte</td></tr>
+            <tr><td data-label="NPC">NPC III</td><td data-label="Entregue">[01] Adaga +2 equipada</td><td data-label="Receba">Frango Assado, Baú de Experiência, Âmagos, Moedas, Pergaminho Água M ou teleporte</td></tr>
+            <tr><td data-label="NPC">NPC IV</td><td data-label="Entregue">[01] Adaga +3 equipada</td><td data-label="Receba">Fragmento de Alma, Caixa de Armas Superior, Barra de Prata, extrações, Lac 100 ou Caixa da Invasão 4</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="donate" aria-labelledby="donate-titulo">
+      <div class="section-head">
+        <div>
+          <p class="label">Loja e bonificação</p>
+          <h2 id="donate-titulo">Itens donate</h2>
+        </div>
+        <p class="section-lead">Itens especiais ligados ao evento e à bonificação limitada.</p>
+      </div>
+
+      <div class="two-column">
+        <article class="panel">
+          <h3>Loja Donate</h3>
+          <ul class="event-list">
+            <li><strong>[01] Caixa da Invasão 3:</strong> 30 Donate</li>
+            <li><strong>[01] Fada Evento 30 Minutos:</strong> 30 Donate. Aumenta a chance de passar pelo NPC Teleporte.</li>
+            <li><strong>[01] Traje 30 Dias Evento:</strong> 150 Donate. Dobra o drop do evento global.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Caixa de Bonificação Especial</h3>
+          <ul class="event-list">
+            <li>[02] Pedras da Luz</li>
+            <li>[15] Pergaminho de Água N</li>
+            <li>[01] Fada Dourada (3 Dias)</li>
+            <li>[06] Pergaminho de Água M</li>
+            <li>[01] Carta de Duelo (N)</li>
+            <li>[01] Adamantita, Caixa de Gemas, Caixa da Invasão 3, Traje de Montaria, Traje ou Tintura Preta</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <strong>Mystic Destiny Server</strong>
+    <p>Mergulhe em um mundo de fantasia hardcore. Conquiste territórios, lidere guildas e escreva sua lenda.</p>
+  </footer>
+
+  <script>
+    const boxes = {
+      "box-1": {
+        title: "Caixa da Invasão 1",
+        tags: ["Entrada do evento", "Pode evoluir para Caixa 2"],
+        rows: [
+          ["15%", "5 Restos de Ori"],
+          ["15%", "3 Restos de Lac"],
+          ["15%", "1 Moeda de 1KK"],
+          ["15%", "2 Classe D"],
+          ["15%", "1 Classe E"],
+          ["15%", "5 Perga N"],
+          ["10%", "1 Caixa da Invasão 2"]
+        ]
+      },
+      "box-2": {
+        title: "Caixa da Invasão 2",
+        tags: ["Materiais intermediários", "Pode evoluir para Caixa 3"],
+        rows: [
+          ["8%", "15 Restos de Ori"],
+          ["8%", "15 Restos de Lac"],
+          ["8%", "2 Moedas de 1KK"],
+          ["8%", "5 Classe D"],
+          ["8%", "3 Classe E"],
+          ["6%", "8 Âmago de Andaluz B"],
+          ["6%", "8 Âmago de Andaluz N"],
+          ["5%", "5 Âmago de Fenrir"],
+          ["5%", "5 Âmago de Fenrir das Sombras"],
+          ["5%", "5 Âmago de Pantera"],
+          ["5%", "5 Perga M"],
+          ["4%", "1 Ticket Mineração (Imóvel)"],
+          ["4%", "1 Ticket Pescaria (Imóvel)"],
+          ["4%", "5 Codex de Evento"],
+          ["2%", "2 Pedra da Luz"],
+          ["2%", "1 Adamantita"],
+          ["10%", "1 Caixa da Invasão 3"]
+        ]
+      },
+      "box-3": {
+        title: "Caixa da Invasão 3",
+        tags: ["Recompensas avançadas", "Pode evoluir para Caixa 4"],
+        rows: [
+          ["17%", "4 Poeiras de Ori"],
+          ["15%", "3 Poeiras de Lac"],
+          ["8%", "3 Baú de Experiência"],
+          ["8%", "3 Frango"],
+          ["8%", "3 Comidas Aleatórias"],
+          ["8%", "5 Moedas de 1KK"],
+          ["5%", "2 Pedra da Luz"],
+          ["5%", "10 Codex de Evento"],
+          ["3%", "1 Carta N"],
+          ["2%", "1 Fragmento de Alma"],
+          ["1%", "1 Caixa de Armas Superior"],
+          ["20%", "1 Caixa da Invasão 4"]
+        ]
+      },
+      "box-4": {
+        title: "Caixa da Invasão 4",
+        tags: ["Item de craft", "Usada no NPC Infernal"],
+        rows: [
+          ["Uso", "Craft 1: Caixa de Armas Superior"],
+          ["Uso", "Craft 2: Extração de Luvas 30/18 Imunidade"],
+          ["Uso", "Craft 3: Caixa de Amuleto Místico Aleatório"],
+          ["Uso", "Craft 4: Caixa de Planetas Aleatório"],
+          ["Origem", "Pode vir da Caixa da Invasão 3 ou do NPC IV do teleporte"]
+        ]
+      }
+    };
+
+    function renderBox(id) {
+      const box = boxes[id];
+      const panel = document.getElementById(id);
+      const tags = box.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
+      const rows = box.rows.map(([chance, item]) => `
+        <tr>
+          <td data-label="Chance">${chance}</td>
+          <td data-label="Item">${item}</td>
+        </tr>
+      `).join("");
+
+      panel.innerHTML = `
+        <div class="loot-summary"><span class="tag">${box.title}</span>${tags}</div>
+        <table>
+          <thead><tr><th>Chance</th><th>Item</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+
+    Object.keys(boxes).forEach(renderBox);
+
+    document.querySelectorAll("[data-tab]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.tab;
+        const group = button.closest("section");
+        group.querySelectorAll("[data-tab]").forEach((item) => item.setAttribute("aria-selected", String(item === button)));
+        group.querySelectorAll(".tab-panel").forEach((panel) => { panel.hidden = panel.id !== target; });
+      });
+    });
+
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`));
+        });
+      }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 });
+
+      sections.forEach((section) => observer.observe(section));
+    }
+  </script>
+</body>
+</html>

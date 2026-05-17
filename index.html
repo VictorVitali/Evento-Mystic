@@ -40,7 +40,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      padding-top: 96px;
+      padding-top: 84px;
       background:
         radial-gradient(circle at 12% 8%, oklch(58% 0.24 304 / 0.28), transparent 30rem),
         radial-gradient(circle at 88% 4%, oklch(68% 0.22 48 / 0.26), transparent 28rem),
@@ -89,6 +89,13 @@
       background: oklch(7% 0.005 285 / 0.8);
       backdrop-filter: blur(24px);
       box-shadow: 0 10px 15px -3px oklch(0% 0 0 / 0.5), 0 4px 6px -4px oklch(0% 0 0 / 0.5);
+      transition: transform .24s ease, opacity .24s ease;
+    }
+
+    body.is-scrolled .topbar {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-100%);
     }
 
     .topbar-inner {
@@ -120,7 +127,7 @@
 
     .quick-nav {
       position: sticky;
-      top: 96px;
+      top: 80px;
       z-index: 19;
       display: flex;
       align-items: center;
@@ -128,8 +135,13 @@
       gap: .75rem;
       width: min(var(--max), calc(100% - 2rem));
       margin: 0 auto;
-      padding-top: .7rem;
+      padding-top: .25rem;
       padding-bottom: .35rem;
+      transition: top .24s ease;
+    }
+
+    body.is-scrolled .topbar + .quick-nav {
+      top: .5rem;
     }
 
     .quick-nav-label {
@@ -1069,6 +1081,13 @@
 
     const navLinks = [...document.querySelectorAll(".nav a")];
     const sections = navLinks.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+
+    function syncScrolledHeader() {
+      document.body.classList.toggle("is-scrolled", window.scrollY > 24);
+    }
+
+    syncScrolledHeader();
+    window.addEventListener("scroll", syncScrolledHeader, { passive: true });
 
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver((entries) => {
